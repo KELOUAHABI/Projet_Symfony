@@ -1,0 +1,33 @@
+AppBundle\Entity\Product:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\ProductRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        productName:
+            type: string
+            length: 255
+            column: product_name
+        urlAlias:
+            type: string
+            length: 255
+            unique: true
+            column: url_alias
+        description:
+            type: string
+            length: '1024'
+            nullable: true
+        published:
+            type: boolean
+        dateAdd:
+            type: datetimetz
+            column: date_add
+        dateUpd:
+            type: datetimetz
+            column: date_upd
+    lifecycleCallbacks: {  }

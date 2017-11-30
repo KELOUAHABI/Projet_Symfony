@@ -2,9 +2,11 @@
 
 namespace AppBundle\Controller;
 
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Entity\Product;
 
 class BlogController extends Controller
 {
@@ -14,15 +16,38 @@ class BlogController extends Controller
     public function productAction($id)
     {
         // replace this example code with whatever you need
-        return $this->render('blog/product.html.twig', ['id_product' => $id]);
+        $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
+        return $this->render('blog/product.html.twig', ['product' => $product]);
     }
 
     /**
-     * @Route("/articles/", name="Articles" )
+     * @Route("/articles/{page}", name="Articles", requirements={"page": "\d+"} )
      */
-    public function productsAction()
+    public function productsAction($page)
     {
-        // replace this example code with whatever you need
-        return $this->render('blog/products.html.twig', []);
+      if ($page < 1) {
+        throw $this->createNotFoundException("La page ".$page." n'existe pas.");
+      }
+
+      $nbPerPage = 3;
+      // replace this example code with whatever you need
+      $repository = $this->getDoctrine()->getRepository(Product::class);
+      $products = $repository->findAllOrderedByDateAdd($page,$nbPerPage);
+
+      // On calcule le nombre total de pages grâce au count($listAdverts) qui retourne le nombre total d'annonces
+      $nbPages = ceil(count($products)/$nbPerPage);
+
+      // Si la page n'existe pas, on retourne une 404
+      if ($page > $nbPages) {
+        throw $this->createNotFoundException("La page ".$page." n'existe pas.");
+      }
+
+        $render = [
+          'products' => $products,
+          'nbPages'  => $nbPages,
+          'page'     => $page
+          ];
+
+      return $this->render('blog/products.html.twig', $render);
     }
 }
