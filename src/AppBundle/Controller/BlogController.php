@@ -7,6 +7,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Product;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class BlogController extends Controller
 {
@@ -49,5 +54,30 @@ class BlogController extends Controller
           ];
 
       return $this->render('blog/products.html.twig', $render);
+    }
+
+    /**
+     * @Route("/admin/product/add", name="newProduct" )
+     */
+    public function newProductAction(Request $request)
+    {
+        // create a product
+        $product = new Product();
+        $product->setDateAdd(new \DateTime());
+        $product->setDateUpd(new \DateTime());
+
+        $form = $this->createFormBuilder($product)
+            ->add('productName', TextType::class, array('required' => true))
+            ->add('urlAlias', TextType::class)
+            ->add('description', TextareaType::class)
+            ->add('published', CheckboxType::class, array('label' => 'Publish this product','required' => false))
+            ->add('dateAdd', DateType::class)
+            ->add('dateUpd', DateType::class)
+            ->add('save', SubmitType::class, array('label' => 'Create Product'))
+            ->getForm();
+
+        return $this->render('blog/new_product.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 }
