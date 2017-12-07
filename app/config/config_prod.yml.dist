@@ -10,7 +10,7 @@ imports:
 doctrine:
   dbal:
     url: "%env(DATABASE_URL)%"
-
+    
 monolog:
     handlers:
         main:
