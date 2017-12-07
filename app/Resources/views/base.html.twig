@@ -4,10 +4,22 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
+
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link href="{{ asset('css/bootstrap.min.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('css/simple-line-icons.css') }}" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+        <link href="{{ asset('css/landing-page.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/1-col-portfolio.css') }}" rel="stylesheet">
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block body %}
+        {% endblock %}
+        {% block javascripts %}
+        <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('js/jquery.min.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+        {% endblock %}
     </body>
 </html>
