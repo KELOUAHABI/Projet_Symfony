@@ -1,0 +1,6 @@
+AppBundle\Entity\Product:
+  properties:
+    productName:
+      - NotBlank: ~
+    description:
+      - NotBlank: ~

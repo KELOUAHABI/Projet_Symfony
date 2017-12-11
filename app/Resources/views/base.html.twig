@@ -12,14 +12,48 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
         <link href="{{ asset('css/landing-page.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/1-col-portfolio.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/login.css') }}" rel="stylesheet">
     </head>
     <body>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+          <div class="container">
+            <a class="navbar-brand" href="{{path('homepage')}}">Mon Blog</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="{{path('homepage')}}">Home
+                    <span class="sr-only">(current)</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{path('homepage')}}">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Contact</a>
+                </li>
+                <li class="nav-item">
+                  {% if is_granted('ROLE_USER')%}
+                    <a class="btn btn-default" href="{{path('fos_user_security_logout')}}">Déconnexion</a>
+                  {% else %}
+                    <a class="btn btn-default" href="{{path('fos_user_security_login')}}">Connexion</a>
+                  {% endif %}
+
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
         {% block body %}
         {% endblock %}
         {% block javascripts %}
         <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('js/jquery.min.js') }}"></script>
         <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('js/login.js') }}"></script>
         {% endblock %}
     </body>
 </html>
