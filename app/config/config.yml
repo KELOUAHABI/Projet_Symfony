@@ -6,7 +6,7 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: fr
 
 framework:
     #esi: ~
@@ -86,3 +86,39 @@ fos_user:
     from_email:
         address: "%mailer_user%"
         sender_name: "%mailer_user%"
+
+easy_admin:
+    site_name: 'Mon BackOffice'
+    design:
+        # brand_color: 'rgba(26, 188, 156, 0.85)'
+        color_scheme: 'light'
+    formats:
+        date:     'd/m/Y'
+        time:     'H:i'
+        datetime: 'd/m/Y H:i:s'
+    entities:
+      Product:
+        class: AppBundle\Entity\Product
+        label: 'Articles'
+        list:
+          title: "Liste des Articles"
+      Users:
+        class: AppBundle\Entity\User
+        label: 'Utilisateur'
+        list:
+          title: "Liste des Utilisateurs"
+          fields:
+            - { property: 'Username', label: "Nom d'utilisateur" }
+            - { property: 'Email', type: 'email' }
+            - { property: 'Enabled', label: 'Actif', type: 'toggle' }
+            - { property: 'lastLogin', label: 'Dernière connexion'}
+            - { property: 'Confirmation token', label: 'Token' }
+        new:
+          fields:
+            - { property: 'Username', type_options: { required: true }, label: "Nom d'utilisateur" ,type:'text'}
+            - { property: 'Email', type_options: { required: true } , css_class: 'input-large', type:'email'}
+            - { property: 'Password', type_options: { required: true } , css_class: 'input-large', type:'password', label: "Mot de passe"}
+    show:
+      title: '%%entity_label%% (#%%entity_id%%)'
+    list:
+        max_results: 10
