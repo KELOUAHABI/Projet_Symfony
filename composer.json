@@ -64,7 +64,11 @@
         "symfony-tests-dir": "tests",
         "symfony-assets-install": "relative",
         "incenteev-parameters": {
-            "file": "app/config/parameters.yml"
+            "file": "app/config/parameters.yml",
+            "env-map": {
+              "database_url": "DATABASE_URL",
+              "monolog_action_level": "LOG_LEVEL"
+            }
         },
         "branch-alias": {
             "dev-master": "3.3-dev"
