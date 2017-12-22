@@ -11,5 +11,3 @@ parameters:
     mailer_user: adlani.mou3taz@gmail.com
     mailer_password: null
     secret: MrMojoRisin
-    database_url: ~
-    monolog_action_level: error
