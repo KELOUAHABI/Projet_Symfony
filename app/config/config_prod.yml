@@ -9,13 +9,13 @@ imports:
 
 doctrine:
   dbal:
-    url: "%database_url%"
+    url: "%env(DATABASE_URL)%"
 
 monolog:
     handlers:
         main:
             type: fingers_crossed
-            action_level: %monolog_action_level%
+            action_level: error
             handler: nested
         nested:
             type: stream
