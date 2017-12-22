@@ -88,7 +88,7 @@ class BlogController extends Controller
             $request->getSession()->getFlashBag()->add('success', 'Article bien enregistrée.');
 
             // Redirection
-            return $this->redirectToRoute('Article', array('id' => $product->getId()));
+            return $this->redirectToRoute('Product', array('id' => $product->getId()));
         }
 
         return $this->render('blog/form_app.html.twig', array(
