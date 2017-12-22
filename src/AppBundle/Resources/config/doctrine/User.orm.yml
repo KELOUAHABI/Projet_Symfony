@@ -1,6 +1,6 @@
 AppBundle\Entity\User:
     type:  entity
-    table: user
+    table: "`user`"
     id:
         id:
             type: integer
