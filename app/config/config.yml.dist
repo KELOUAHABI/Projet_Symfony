@@ -91,9 +91,9 @@ fos_user:
 
 # EasyAdminBundle config
 easy_admin:
-    site_name: 'Mon BackOffice'
+    site_name: 'Blog Admin'
     design:
-        # brand_color: 'rgba(26, 188, 156, 0.85)'
+        brand_color: '#343a40'
         color_scheme: 'light'
     formats:
         date:     'd/m/Y'
