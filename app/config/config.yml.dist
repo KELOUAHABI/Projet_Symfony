@@ -79,6 +79,7 @@ swiftmailer:
     password: '%mailer_password%'
     spool: { type: memory }
 
+# FOSUserBundle config
 fos_user:
     db_driver: orm # other valid values are 'mongodb' and 'couchdb'
     firewall_name: main
@@ -87,7 +88,55 @@ fos_user:
         address: "%mailer_user%"
         sender_name: "%mailer_user%"
 
+
+# EasyAdminBundle config
 easy_admin:
+    site_name: 'Mon BackOffice'
+    design:
+        # brand_color: 'rgba(26, 188, 156, 0.85)'
+        color_scheme: 'light'
+    formats:
+        date:     'd/m/Y'
+        time:     'H:i'
+        datetime: 'd/m/Y H:i:s'
     entities:
-        - AppBundle\Entity\Product
-        - AppBundle\Entity\User
+      Product:
+        class: AppBundle\Entity\Product
+        label: 'Produits'
+        list:
+          title: "Admin - Liste des Produits"
+      Post:
+        class: AppBundle\Entity\Post
+        label: 'Articles'
+        list:
+          title: "Admin - Liste des Articles"
+        new:
+          fields:
+            - { property: 'title', type_options: { required: true }, label: "Titre" ,type:'text'}
+            - { property: 'body', type_options: { required: true } , label: "Article", type: 'ckeditor'}
+            - { property: 'published', label: "Publier", type: 'checkbox'}
+        edit:
+          fields:
+            - { property: 'title', type_options: { required: true }, label: "Titre" ,type:'text'}
+            - { property: 'body', type_options: { required: true } , label: "Article", type: 'ckeditor'}
+            - { property: 'published', label: "Publier", type: 'checkbox'}
+      Users:
+        class: AppBundle\Entity\User
+        label: 'Utilisateur'
+        list:
+          title: "Admin - Liste des Utilisateurs"
+          fields:
+            - { property: 'Username', label: "Nom d'utilisateur" }
+            - { property: 'Email', type: 'email' }
+            - { property: 'Enabled', label: 'Actif', type: 'toggle' }
+            - { property: 'lastLogin', label: 'Dernière connexion'}
+            - { property: 'Confirmation token', label: 'Token' }
+        new:
+          fields:
+            - { property: 'Username', type_options: { required: true }, label: "Nom d'utilisateur" ,type:'text'}
+            - { property: 'Email', type_options: { required: true } , css_class: 'input-large', type:'email'}
+            - { property: 'Password', type_options: { required: true } , css_class: 'input-large', type:'password', label: "Mot de passe"}
+    show:
+      title: '%%entity_label%% (#%%entity_id%%)'
+    list:
+        max_results: 10

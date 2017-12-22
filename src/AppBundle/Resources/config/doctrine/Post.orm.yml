@@ -1,0 +1,26 @@
+AppBundle\Entity\Post:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\PostRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: '64'
+        body:
+            type: string
+            length: '3400'
+        published:
+            type: boolean
+        dateAdd:
+            type: datetimetz
+            column: date_add
+        dateUpd:
+            type: datetimetz
+            column: date_upd
+    lifecycleCallbacks: {  }

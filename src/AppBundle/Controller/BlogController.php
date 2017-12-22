@@ -17,17 +17,17 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 class BlogController extends Controller
 {
     /**
-     * @Route("/article/{id}", name="Article" , requirements={"id": "\d+"})
+     * @Route("/product/{id}", name="Product" , requirements={"id": "\d+"})
      */
     public function showProductAction($id)
     {
         // replace this example code with whatever you need
         $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
-        return $this->render('blog/product.html.twig', ['product' => $product]);
+        return $this->render('blog/product.html.twig', ['page_name' => 'products','product' => $product]);
     }
 
     /**
-     * @Route("/articles/{page}", name="Articles", requirements={"page": "\d+"} )
+     * @Route("/products/{page}", name="Products", requirements={"page": "\d+"} )
      */
     public function displayProductsAction($page)
     {
@@ -49,6 +49,7 @@ class BlogController extends Controller
       }
 
         $render = [
+          'page_name' => 'products',
           'products' => $products,
           'nbPages'  => $nbPages,
           'page'     => $page
@@ -58,7 +59,7 @@ class BlogController extends Controller
     }
 
     /**
-     * @Route("/article/add", name="addArticle" )
+     * @Route("/product/add", name="addProduct" )
      */
     public function newProductAction(Request $request)
     {
@@ -90,14 +91,15 @@ class BlogController extends Controller
             return $this->redirectToRoute('Article', array('id' => $product->getId()));
         }
 
-        return $this->render('blog/form_product.html.twig', array(
-            'libelle' => 'Formulaire d\'ajout d\'un article',
+        return $this->render('blog/form_app.html.twig', array(
+            'libelle' => 'Formulaire d\'ajout d\'un produit',
+            'page_name' => 'products',
             'form' => $form->createView(),
         ));
     }
 
     /**
-     * @Route("/article/edit/{id}", name="editArticle", requirements={"id": "\d+"})
+     * @Route("/product/edit/{id}", name="editProduct", requirements={"id": "\d+"})
      */
     public function editProductAction(Request $request, $id)
     {
@@ -105,7 +107,7 @@ class BlogController extends Controller
         $product = $this->getDoctrine()->getManager()->getRepository(Product::class)->find($id);
 
         if (!isset($product)) {
-          throw $this->createNotFoundException("Cet article n'existe pas.");
+          throw $this->createNotFoundException("Ce produit n'existe pas.");
         }
 
         $form = $this->get('form.factory')->createBuilder(FormType::class, $product)
@@ -124,14 +126,15 @@ class BlogController extends Controller
             $em->persist($product);
             $em->flush();
 
-            $request->getSession()->getFlashBag()->add('success', 'L\'artice '.$product->getProductName().' a été modifié avec succès.');
+            $request->getSession()->getFlashBag()->add('success', 'Le produit '.$product->getProductName().' a été modifié avec succès.');
 
             // On redirige vers la page de visualisation de l'annonce nouvellement créée
             return $this->redirectToRoute('Article', array('id' => $product->getId()));
         }
 
-        return $this->render('blog/form_product.html.twig', array(
-            'libelle' => 'Formulaire de modification de l\'article '.$product->getProductName(),
+        return $this->render('blog/form_app.html.twig', array(
+            'page_name' => 'products',
+            'libelle' => 'Formulaire de modification du produit '.$product->getProductName(),
             'form' => $form->createView(),
         ));
     }

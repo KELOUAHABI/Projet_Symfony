@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+<div class="container">
+  <!-- Page Heading -->
+  <h1 class="my-4">
+    Liste de Articles
+    <!-- <small>Secondary Text</small> -->
+  </h1>
+  <hr>
+  <div class="col-md-12">
+  {% for post in posts %}
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.body|length > 300 ? post.body|slice(0, 300) ~ '...' : post.body }}</p>
+    <div>
+      <span class="badge">Publié le {{ post.dateAdd|date('d/m/Y H:i:s')  }}</span>
+      {% if post.body|length > 300 %}
+        <a class="btn btn-basic pull-right" href="{{ path('Article',{ 'id': post.id }) }}">Lire la suite</a>
+      {% endif %}
+    </div>
+
+    <hr>
+  {% endfor %}
+  </div>
+
+  <!-- Pagination -->
+
+  <ul class="pagination justify-content-center">
+    <li class="page-item">
+      <a class="page-link" {% if page == 1 %} class="disabled" {% else %} href="{{ path('Articles',{ 'page': page - 1 }) }}" {% endif %} aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Précedent</span>
+      </a>
+    </li>
+    {% for p in range(1, nbPages) %}
+      <li {% if p == page %} class="active page-item"{% else %} class="page-item"  {% endif %} >
+        <a class="page-link" href="{{ path('Articles',{ 'page': p }) }}">{{ p }}</a>
+      </li>
+    {% endfor %}
+    <li class="page-item">
+      <a class="page-link" {% if page == nbPages %} class="disabled" {% else %} href="{{ path('Articles',{ 'page': page + 1 }) }}" {% endif %} aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Suivant</span>
+      </a>
+    </li>
+  </ul>
+</div>
+<!-- /.container -->
+
+<!-- Footer -->
+<footer class="py-5 bg-dark">
+  <div class="container">
+    <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+  </div>
+  <!-- /.container -->
+</footer>
+
+{% endblock %}

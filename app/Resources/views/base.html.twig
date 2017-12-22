@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Mon Blog!{% endblock %}</title>
+        <title>{% block title %}Mon Blog{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
 
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
@@ -23,16 +23,21 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
               <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
+                <li class="nav-item {% if page_name == 'home' %}active{% endif %}">
                   <a class="nav-link" href="{{path('homepage')}}">Home
                     <span class="sr-only">(current)</span>
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{path('homepage')}}">About</a>
+                <li class="nav-item {% if page_name == 'articles' %}active{% endif %}">
+                  <a class="nav-link" href="{{path('Articles',{ 'page': 1 })}}">Articles
+                    {% if page_name == 'articles' %}<span class="sr-only">(current)</span>{% endif %}
+                  </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Contact</a>
+                <li class="nav-item {% if page_name == 'products' %}active{% endif %}">
+                  <a class="nav-link" href="{{path('Products',{ 'page': 1 })}}">Produits</a>
+                </li>
+                <li class="nav-item {% if page_name == 'home' %}active{% endif %}">
+                  <a class="nav-link" href="{{path('homepage')}}">About</a>
                 </li>
                 <li class="nav-item">
                   {% if is_granted('ROLE_USER')%}

@@ -79,6 +79,7 @@ swiftmailer:
     password: '%mailer_password%'
     spool: { type: memory }
 
+# FOSUserBundle config
 fos_user:
     db_driver: orm # other valid values are 'mongodb' and 'couchdb'
     firewall_name: main
@@ -87,10 +88,12 @@ fos_user:
         address: "%mailer_user%"
         sender_name: "%mailer_user%"
 
+
+# EasyAdminBundle config
 easy_admin:
-    site_name: 'Mon BackOffice'
+    site_name: 'Blog Admin'
     design:
-        # brand_color: 'rgba(26, 188, 156, 0.85)'
+        brand_color: '#343a40'
         color_scheme: 'light'
     formats:
         date:     'd/m/Y'
@@ -99,14 +102,29 @@ easy_admin:
     entities:
       Product:
         class: AppBundle\Entity\Product
+        label: 'Produits'
+        list:
+          title: "Admin - Liste des Produits"
+      Post:
+        class: AppBundle\Entity\Post
         label: 'Articles'
         list:
-          title: "Liste des Articles"
+          title: "Admin - Liste des Articles"
+        new:
+          fields:
+            - { property: 'title', type_options: { required: true }, label: "Titre" ,type:'text'}
+            - { property: 'body', type_options: { required: true } , label: "Article", type: 'ckeditor'}
+            - { property: 'published', label: "Publier", type: 'checkbox'}
+        edit:
+          fields:
+            - { property: 'title', type_options: { required: true }, label: "Titre" ,type:'text'}
+            - { property: 'body', type_options: { required: true } , label: "Article", type: 'ckeditor'}
+            - { property: 'published', label: "Publier", type: 'checkbox'}
       Users:
         class: AppBundle\Entity\User
         label: 'Utilisateur'
         list:
-          title: "Liste des Utilisateurs"
+          title: "Admin - Liste des Utilisateurs"
           fields:
             - { property: 'Username', label: "Nom d'utilisateur" }
             - { property: 'Email', type: 'email' }
