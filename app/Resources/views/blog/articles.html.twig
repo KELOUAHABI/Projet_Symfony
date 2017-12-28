@@ -11,7 +11,7 @@
   <div class="col-md-12">
   {% for post in posts %}
     <h1>{{ post.title }}</h1>
-    <p>{{ post.body|length > 300 ? post.body|slice(0, 300) ~ '...' : post.body }}</p>
+    <p>{{ post.body|length > 300 ? post.body|striptags|slice(0, 300) ~ '...' : post.body|raw }}</p>
     <div>
       <span class="badge">Publié le {{ post.dateAdd|date('d/m/Y H:i:s')  }}</span>
       {% if post.body|length > 300 %}
@@ -46,13 +46,4 @@
   </ul>
 </div>
 <!-- /.container -->
-
-<!-- Footer -->
-<footer class="py-5 bg-dark">
-  <div class="container">
-    <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
-  </div>
-  <!-- /.container -->
-</footer>
-
 {% endblock %}
