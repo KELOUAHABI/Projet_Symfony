@@ -14,7 +14,7 @@ class ProductRepository extends \Doctrine\ORM\EntityRepository
 
     public function findAllOrderedByDateAdd($page, $nbPerPage)
     {
-      $query = $this->createQueryBuilder('p')->where('p.published = 1')->orderBy('p.dateAdd', 'ASC')->getQuery();
+      $query = $this->createQueryBuilder('p')->where('p.published = `1`')->orderBy('p.dateAdd', 'ASC')->getQuery();
       $query->setFirstResult(($page-1) * $nbPerPage)->setMaxResults($nbPerPage);
       return new Paginator($query, true);
     }
