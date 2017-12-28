@@ -105,6 +105,18 @@ easy_admin:
         label: 'Produits'
         list:
           title: "Admin - Liste des Produits"
+        new:
+          fields:
+            - { property: 'productName', type_options: { required: true }, label: "Nom du produit" ,type:'text'}
+            - { property: 'urlAlias', type_options: { required: true } , label: "Url alias", type: 'text'}
+            - { property: 'description', type_options: { required: false } , label: "Description", type: 'ckeditor'}
+            - { property: 'published', label: "Publier", type: 'checkbox'}
+        edit:
+          fields:
+            - { property: 'productName', type_options: { required: true }, label: "Nom du produit" ,type:'text'}
+            - { property: 'urlAlias', type_options: { required: true } , label: "Url alias", type: 'text'}
+            - { property: 'description', type_options: { required: false } , label: "Description", type: 'ckeditor'}
+            - { property: 'published', label: "Publier", type: 'checkbox'}
       Post:
         class: AppBundle\Entity\Post
         label: 'Articles'
