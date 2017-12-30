@@ -61,4 +61,7 @@ les liens sont securisés, et ne sont accéssible qu'à un utilisateur avec le r
  on peux aussi ajouter un utilisateur super admin avec la commande : `heroku run php bin/console fos:user:create adminuser --super-admin`
  -----------------------------
 
+ le lien vers le blog : [eladlani-elgabsi-blog](http://eladlani-elgabsi-blog.herokuapp.com/)
+
+
  Enjoy!

@@ -6,7 +6,7 @@
   <h1 class="my-4">Produit : {{ product.productName }} #{{ product.id }} </h1>
   <hr>
   <div class="col-md-12">
-    <p>{{ product.description }}</p>
+    <p>{{ product.description|raw }}</p>
     <div>
       <span class="badge">Ajouté le {{ product.dateAdd|date('d/m/Y H:i:s')  }}</span>
     </div>

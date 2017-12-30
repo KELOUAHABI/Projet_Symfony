@@ -18,7 +18,7 @@
             </div>
             <div class="col-md-5">
               <h3>{{ product.productName }}</h3>
-              <p>{{ product.description|length > 200 ? product.description|slice(0, 200) ~ '...' : product.description }}</p>
+              <p>{{ product.description|length > 200 ? product.description|striptags|slice(0, 200) ~ '...' : product.description|raw }}</p>
               <a class="btn btn-primary" href="{{ path('Product',{ 'id': product.id }) }}">Détails produit</a>
             </div>
           </div>
