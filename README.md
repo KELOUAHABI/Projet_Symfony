@@ -57,6 +57,8 @@ les liens sont securisés, et ne sont accéssible qu'à un utilisateur avec le r
                  password: super_pass
                  roles: 'ROLE_ADMIN'
  ```
+
+ on peux aussi ajouter un utilisateur super admin avec la commande : `heroku run php bin/console fos:user:create adminuser --super-admin`
  -----------------------------
 
  Enjoy!
