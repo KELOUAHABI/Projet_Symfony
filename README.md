@@ -30,6 +30,7 @@ les liens sont securisés, et ne sont accéssible qu'à un utilisateur avec le r
 # 2ème methode:
 
  * à partir du backoffice, accéssible depuis la route `/admin`, accéssible au role super_admin
+ * la suppression des entités se fait seulement sur le back office.
 
 
  ```yml

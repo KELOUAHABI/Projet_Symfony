@@ -147,7 +147,14 @@ easy_admin:
           fields:
             - { property: 'Username', type_options: { required: true }, label: "Nom d'utilisateur" ,type:'text'}
             - { property: 'Email', type_options: { required: true } , css_class: 'input-large', type:'email'}
-            - { property: 'Password', type_options: { required: true } , css_class: 'input-large', type:'password', label: "Mot de passe"}
+            - { property: 'plainPassword', type_options: { required: true } , css_class: 'input-large', type:'password', label: "Mot de passe"}
+            - { property: 'enabled', label: "Actif", type: 'checkbox'}
+        # edit:
+        #   fields:
+        #     - { property: 'Username', type_options: { required: true }, label: "Nom d'utilisateur" ,type:'text'}
+        #     - { property: 'Email', type_options: { required: true } , css_class: 'input-large', type:'email'}
+        #     - { property: 'plainPassword', type_options: { required: true } , css_class: 'input-large', type:'password', label: "Mot de passe"}
+        #     - { property: 'enabled', label: "Actif", type: 'checkbox'}
     show:
       title: '%%entity_label%% (#%%entity_id%%)'
     list:
