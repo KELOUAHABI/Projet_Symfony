@@ -48,7 +48,7 @@ les liens sont securisés, et ne sont accéssible qu'à un utilisateur avec le r
  Un Utilisateur super_admin est codé en brut :
 
  ```yml
-  #  app/config/security.yml
+ #  app/config/security.yml
  in_memory:
      memory:
          users:
@@ -57,3 +57,5 @@ les liens sont securisés, et ne sont accéssible qu'à un utilisateur avec le r
                  roles: 'ROLE_ADMIN'
  ```
  -----------------------------
+
+ Enjoy!
