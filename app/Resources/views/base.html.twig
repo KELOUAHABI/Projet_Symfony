@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Mon Blog{% endblock %}</title>
+        <title>{% block title %}Projet Symfony{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
 
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
@@ -23,7 +23,7 @@
             {% if page_name is not defined %}
               {% set page_name = '' %}
             {% endif %}
-            <a class="navbar-brand" href="{{path('homepage')}}">Mon Blog</a>
+            <a class="navbar-brand" href="{{path('homepage')}}">Notre Blog</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -42,8 +42,8 @@
                 <li class="nav-item {% if page_name == 'products' %}active{% endif %}">
                   <a class="nav-link" href="{{path('Products',{ 'page': 1 })}}">Produits</a>
                 </li>
-                <li class="nav-item {% if page_name == 'home' %}active{% endif %}">
-                  <a class="nav-link" href="{{path('homepage')}}">About</a>
+                <li class="nav-item {% if page_name == 'about' %}active{% endif %}">
+                  <a class="nav-link" href="{{path('about')}}">A Propos</a>
                 </li>
                 <li class="nav-item">
                   {% if is_granted('ROLE_USER')%}

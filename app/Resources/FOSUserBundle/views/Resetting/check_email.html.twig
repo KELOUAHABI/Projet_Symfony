@@ -1,4 +1,6 @@
-{% extends 'base.html.twig' %}
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
 
 {% block body %}
 <header class="masthead text-white text-center">
@@ -6,11 +8,13 @@
   <div class="container">
     <div class="row">
       <div class="col-xl-9 mx-auto">
-        <h1 class="mb-5">Erreur 404</h1>
-        <h1 class="mb-5">La page que vous cherchez n'éxiste pas.</h1>
+        <p>
+        {{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime})|nl2br }}
+        </p>
         <a class="btn btn-warning" href="{{path('homepage')}}">Retour à la page d'acceuil</a>
       </div>
     </div>
   </div>
 </header>
+
 {% endblock %}

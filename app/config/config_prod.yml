@@ -1,7 +1,7 @@
 imports:
     - { resource: config.yml }
 
-#doctrine:
+# doctrine:
 #    orm:
 #        metadata_cache_driver: apc
 #        result_cache_driver: apc

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="container">
+
+  <!-- Introduction Row -->
+  <h1 class="my-4">A propos du blog</h1>
+  <p>Ce blog est réalisé dans le cadre du projet e-application. </p>
+  <p>Repository git du blog sur: <a href="https://gitlab.com/AdlaniMouataz/projet-symfony">https://gitlab.com/AdlaniMouataz/projet-symfony</a> </br>
+    Pour plus de détails voir le fichier <b>README.md</b> dans la racine du projet
+  </p>
+
+  <!-- Team Members Row -->
+  <div class="row">
+    <div class="col-lg-12">
+      <h2 class="my-4">Réalisé par:</h2>
+    </div>
+    <div class="col-lg-4 col-sm-6 text-center mb-4">
+      <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="">
+      <h3>Eladlani Almouataz</h3>
+      <small>Master 2 - parcours DECOL</small>
+    </div>
+    <div class="col-lg-4 col-sm-6 text-center mb-4">
+      <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/200x200" alt="">
+      <h3>Elgabsi Moez</h3>
+      <small>Master 2 - parcours DECOL</small>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

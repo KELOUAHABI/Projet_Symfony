@@ -1,72 +1,59 @@
-Symfony Standard Edition
+Projet e-application : création d'un blog avec Symfony 3
 ========================
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony
-application that you can use as the skeleton for your new applications.
+Blog réalisé avec Symfony 3, en utilisant les bundles :
 
-For details on how to download and get started with Symfony, see the
-[Installation][1] chapter of the Symfony Documentation.
+  * [**FOSUserBundle**] pour la gestion des utilisateur et la securité des routes.
 
-What's inside?
---------------
+  * [**EasyAdminBundle**] pour la gestion des entités.
 
-The Symfony Standard Edition is configured with the following defaults:
+  * [**IvoryCKEditorBundle**] pour l'affichage d'un textarea WYSIWYG.
 
-  * An AppBundle you can use to start coding;
+-----------------------------
 
-  * Twig as the only configured template engine;
+La gestion des produits et des articles se fait de deux façon :
 
-  * Doctrine ORM/DBAL;
+# 1ère methode:
 
-  * Swiftmailer;
+## Produits :
 
-  * Annotations enabled for everything.
+  * Ajout : `/product/add`
+  * Modification : `/product/edit/{id}`
 
-It comes pre-configured with the following bundles:
+## Articles :
 
-  * **FrameworkBundle** - The core Symfony framework bundle
+  * Ajout : `/article/add`
+  * Modification : `/article/edit/{id}`
 
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
+les liens sont securisés, et ne sont accéssible qu'à un utilisateur avec le role super_admin.
 
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
+# 2ème methode:
 
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
+ * à partir du backoffice, accéssible depuis la route `/admin`, accéssible au role super_admin
 
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
 
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
+ ```yml
+ #  app/config/security.yml
+ access_control:
+     - { path: ^/admin/, role: ROLE_ADMIN }
+     - { path: ^/article/edit/, role: ROLE_ADMIN }
+     - { path: ^/article/add, role: ROLE_ADMIN }
+     - { path: ^/product/edit/, role: ROLE_ADMIN }
+     - { path: ^/product/add, role: ROLE_ADMIN }
 
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
+ ```
 
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
+ -----------------------------
 
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
+ Un Utilisateur super_admin est codé en brut :
 
-  * [**SensioGeneratorBundle**][13] (in dev env) - Adds code generation
-    capabilities
-
-  * [**WebServerBundle**][14] (in dev env) - Adds commands for running applications
-    using the PHP built-in web server
-
-  * **DebugBundle** (in dev/test env) - Adds Debug and VarDumper component
-    integration
-
-All libraries and bundles included in the Symfony Standard Edition are
-released under the MIT or BSD license.
-
-Enjoy!
-
-[1]:  https://symfony.com/doc/3.3/setup.html
-[6]:  https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  https://symfony.com/doc/3.3/doctrine.html
-[8]:  https://symfony.com/doc/3.3/templating.html
-[9]:  https://symfony.com/doc/3.3/security.html
-[10]: https://symfony.com/doc/3.3/email.html
-[11]: https://symfony.com/doc/3.3/logging.html
-[13]: https://symfony.com/doc/current/bundles/SensioGeneratorBundle/index.html
-[14]: https://symfony.com/doc/current/setup/built_in_web_server.html
+ ```yml
+  #  app/config/security.yml
+ in_memory:
+     memory:
+         users:
+             super_admin:
+                 password: super_pass
+                 roles: 'ROLE_ADMIN'
+ ```
+ -----------------------------
