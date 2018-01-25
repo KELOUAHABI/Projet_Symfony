@@ -1,4 +1,4 @@
-Projet e-application : création d'un blog avec Symfony 3
+Projet symfony: création d'un blog avec Symfony 3
 ========================
 
 Blog réalisé avec Symfony 3, en utilisant les bundles :
@@ -57,11 +57,6 @@ les liens sont securisés, et ne sont accéssible qu'à un utilisateur avec le r
                  password: super_pass
                  roles: 'ROLE_ADMIN'
  ```
-
- on peux aussi ajouter un utilisateur super admin avec la commande : `heroku run php bin/console fos:user:create adminuser --super-admin`
- -----------------------------
-
- le lien vers le blog : [eladlani-elgabsi-blog](http://eladlani-elgabsi-blog.herokuapp.com/)
 
 
  Enjoy!

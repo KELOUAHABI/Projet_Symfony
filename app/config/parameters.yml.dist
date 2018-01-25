@@ -8,6 +8,6 @@ parameters:
     database_password: null
     mailer_transport: smtp
     mailer_host: 127.0.0.1
-    mailer_user: adlani.mou3taz@gmail.com
+    mailer_user: kaoutar.elouahabi23@gmail.com
     mailer_password: null
-    secret: MrMojoRisin
+    secret: 123456
